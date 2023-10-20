@@ -26,6 +26,20 @@ services:
       - db
       - redis
 
+  users:
+    build:
+      context: .
+      dockerfile: ./apps/users/Dockerfile
+    command: npm run start:dev users
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+      - redis
+
   nginx:
     image: nginx
     ports:
