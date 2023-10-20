@@ -45,6 +45,33 @@
       "compilerOptions": {
         "tsConfigPath": "apps/users/tsconfig.app.json"
       }
+    },
+    "rmq-lib": {
+      "type": "library",
+      "root": "libs/rmq-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/rmq-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/rmq-lib/tsconfig.lib.json"
+      }
+    },
+    "users-lib": {
+      "type": "library",
+      "root": "libs/users-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/users-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/users-lib/tsconfig.lib.json"
+      }
+    },
+    "common-lib": {
+      "type": "library",
+      "root": "libs/common-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/common-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common-lib/tsconfig.lib.json"
+      }
     }
   }
 }
