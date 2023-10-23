@@ -11,7 +11,6 @@ async function bootstrap() {
   const configService = app.get<ConfigService>(ConfigService);
   const rmqLibService = app.get<RmqLibService>(RmqLibService);
 
-  console.log('HELLO');
   const microservice = app.connectMicroservice<RmqOptions>(rmqLibService.getOptions(UsersConstants.USERS_QUEUE_NAME));
 
   const PORT = configService.get<number>(UsersConstants.USERS_PORT);

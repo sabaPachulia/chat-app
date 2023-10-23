@@ -1,0 +1,71 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id Int @default(autoincrement()) @id
+  username String @unique
+  email String @unique
+  password String
+  role Role @default(USER)
+  active Boolean
+  createdAt DateTime @map(name: "created_at")
+  updatedAt DateTime @map(name: "updated_at")
+
+  deactivatedUser DeactivatedUser?
+  disabledUser DisabledUser?
+  sessions Session[]
+
+  @@map(name: "users")
+}
+
+
+model DeactivatedUser {
+  id Int @default(autoincrement()) @id
+  reason String
+  userId Int @unique @map(name: "user_id")
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @map(name: "created_at")
+  updatedAt DateTime @map(name: "updated_at")
+  
+  @@map(name: "deactivated_users")
+}
+
+
+model DisabledUser {
+  id Int @default(autoincrement()) @id
+  reason String
+  disabledAt DateTime @map(name: "disabled_at")
+  userId Int @unique @map(name: "user_id")
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @map(name: "created_at")
+  updatedAt DateTime @map(name: "updated_at")
+
+  @@map(name: "disabled_users")
+}
+
+
+model Session {
+  id Int @default(autoincrement()) @id
+  deviceId String @map(name: "device_id")
+  refreshToken String @map(name: "refresh_token")
+  userId Int @map(name: "user_id")
+  user User @relation(fields: [userId], references: [id])
+  expiresAt DateTime @map(name: "expiresAt")
+  createdAt DateTime @map(name: "created_at")
+  updatedAt DateTime @map(name: "updated_at")
+
+  @@map(name: "sessions")
+}
+

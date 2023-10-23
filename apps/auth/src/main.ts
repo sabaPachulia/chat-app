@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AuthModule } from './auth.module';
-import { MicroserviceOptions, RmqOptions, Transport } from '@nestjs/microservices';
+import { RmqOptions } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
-import { RmqLibModule, RmqLibService } from '@app/rmq-lib';
+import { RmqLibService } from '@app/rmq-lib';
 import * as AuthContstants from '@app/auth-lib';
 
 async function bootstrap() {
